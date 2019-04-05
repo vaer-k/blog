@@ -100,10 +100,22 @@
           :target "tab"}
       "Stack Overflow" [:h6.subtitle.is-6 "If you like to ask questions"]]]]])
 
+
+(defn mytest []
+  (let [color (r/atom "blue")]
+    (fn []
+      (condp = @color
+        "blue" [:div.box {:on-click #(reset! color "red")
+                          :style {:background "blue"}}]
+        "red" [:div.box {:on-click #(reset! color "blue")
+                         :style {:background "red"}}]))))
+
 (defn site-nav []
   [:header.section.column.is-one-third
    [the-goods]
-   [also-on]])
+   [also-on]
+   [mytest]
+   ])
 
 (defn display []
   [:div.section.column.is-hidden-mobile
@@ -111,10 +123,13 @@
    [:legend "Yosemite National Park"]])
 
 (defn page []
-  [:main.container
+  [:main.container.easy
    [:div.columns
     [site-nav]
     [display]]])
+
+(defn spinner []
+  [:div.lds-ellipsis [:div] [:div] [:div] [:div]])
 
 ;; -------------------------
 ;; Routes
