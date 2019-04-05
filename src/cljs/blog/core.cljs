@@ -53,10 +53,68 @@
   {:home #'home-page
    :about #'about-page})
 
-(defn page []
+(defn default-page []
   [:div
    [navbar]
    [(pages @(rf/subscribe [:page]))]])
+
+;; -------------------------
+;; My stuff
+
+(defn the-goods []
+  [:nav
+   [:h3.title "The Goods"]
+   [:ul
+    [:li.subtitle
+     [:a {:href "https://github.com/vaer-k"}
+      "Open Source Projects"
+      [:h6.subtitle.is-6 "Code that Might be Useful to You"]]]
+    [:li.subtitle
+     [:a {:href "/posts"}
+      "Things I've Written"
+      [:h6.subtitle.is-6 "On Technology and Ideas"]]]     
+    ]])
+
+(defn also-on []
+  [:nav
+   [:h3.title "I'm also on"]
+   [:ul
+    [:li.subtitle
+     [:a {:href "https://github.com/vaer-k"
+          :target "tab"}
+      "GitHub" [:h6.subtitle.is-6 "If you code"]]]
+    [:li.subtitle
+     [:a {:href "https://twitter.com/vaer_k"
+          :target "tab"}
+      "Twitter" [:h6.subtitle.is-6 "If you tweet"]]]
+    [:li.subtitle
+     [:a {:href "https://www.linkedin.com/in/vincentraerek"
+          :target "tab"}
+      "LinkedIn" [:h6.subtitle.is-6 "If you wanna work together"]]]
+    [:li.subtitle
+     [:a {:href "https://instagram.com/vaer_k"
+          :target "tab"}
+      "Instagram" [:h6.subtitle.is-6 "If you like photos"]]]
+    [:li.subtitle
+     [:a {:href "https://stackoverflow.com/users/2602816/vaer-k"
+          :target "tab"}
+      "Stack Overflow" [:h6.subtitle.is-6 "If you like to ask questions"]]]]])
+
+(defn site-nav []
+  [:header.section.column.is-one-third
+   [the-goods]
+   [also-on]])
+
+(defn display []
+  [:div.section.column.is-hidden-mobile
+   [:figure.bg-img]
+   [:legend "Yosemite National Park"]])
+
+(defn page []
+  [:main.container
+   [:div.columns
+    [site-nav]
+    [display]]])
 
 ;; -------------------------
 ;; Routes
