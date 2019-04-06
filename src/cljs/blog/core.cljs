@@ -123,7 +123,7 @@
    [:legend "Yosemite National Park"]])
 
 (defn page []
-  [:main.container.easy
+  [:main.container
    [:div.columns
     [site-nav]
     [display]]])

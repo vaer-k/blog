@@ -17,8 +17,27 @@ nav {
   transition-timing-function: linear;
 }
 
-.easy {
-     animation: fadein 2s;
+main {
+    animation: fadein 2s;
+}
+
+.cursor {
+    display: inline-block;
+    background-color: hsl(0, 0%, 21%);
+    animation: blink 1s steps(5, start) infinite;
+    width: 0.5em;
+    height: 0.9em;
+    padding: 0;
+    margin-right: .5em;
+}
+
+.typing {
+    padding: 0;
+    overflow: hidden;
+    display: inline-block;
+    white-space: nowrap;
+    animation: typing 1.5s steps(5, end) -0.2s;
+    vertical-align: text-bottom;
 }
 
 
@@ -37,6 +56,17 @@ Animations
     to   { opacity: 0; }
 }
 
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
 /*
 Loading spinner
 ------------------------------------------
@@ -44,16 +74,14 @@ Loading spinner
 
 .spinner {
     position: fixed;
-    top: 0;
-    left: 0;
-}
+    top: 50%;
+    left: 40%;
+ }
 
 .spinner .spinner-body {
-    height: 100vh;
-    width: 100vw;
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
 }
 
 .lds-ellipsis {
