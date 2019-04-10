@@ -24,11 +24,10 @@ main {
 .cursor {
     display: inline-block;
     background-color: hsl(0, 0%, 21%);
-    animation: blink 1s steps(5, start) infinite;
+    animation: blink 1s steps(5, start) -0.5s infinite;
     width: 0.5em;
     height: 0.9em;
     padding: 0;
-    margin-right: .5em;
 }
 
 .typing {

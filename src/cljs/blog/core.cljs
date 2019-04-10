@@ -114,7 +114,6 @@
   [:header.section.column.is-one-third
    [the-goods]
    [also-on]
-   [mytest]
    ])
 
 (defn display []
