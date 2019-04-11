@@ -13,32 +13,29 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="title is-size-1-desktop">
-            <a href="/">&lambda; Hello world</a>
+            &lambda; <a class="typing" href="/">Hello world</a>
+            <div class="cursor"></div>
           </h1>
-          <p class="subtitle">I'm Vincent Raerek</p>
+          <p class="subtitle appear">I'm Vincent Raerek</p>
         </div>
       </div>
     </section>
 
     <div id="app">
       <section class="spinner">
-        <div class="spinner-body">
-          <div class="typing"><h1 class="is-size-1">hello world</h1></div>
-          <pre class="cursor is-size-1"> </pre>
+        <div class="lds-ellipsis">
+          <div></div><div></div><div></div><div></div>
         </div>
-        <!-- <div class="lds-ellipsis"> -->
-          <!-- <div></div><div></div><div></div><div></div> -->
-        <!-- </div>         -->
       </section>
     </div>
   </body>
 
   <!-- scripts -->
-  {% script "/assets/font-awesome/js/all.js" %}  
+  {% script "/assets/font-awesome/js/all.js" %}
 
   <script type="text/javascript">
     var csrfToken = "{{csrf-token}}";
   </script>
   {% script "/js/app.js" %}
-  
+
 </html>

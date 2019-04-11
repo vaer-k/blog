@@ -21,22 +21,39 @@ main {
     animation: fadein 2s;
 }
 
+.appear {
+    opacity: 0;
+    animation: fadein 2s linear 2s forwards;
+}
+
 .cursor {
+    display: inline-block;
+    background-color: white;
+    animation: blink 1s steps(5, start) -0.5s infinite;
+    width: 0.5em;
+    height: 0.9em;
+    padding: 0;
+    margin-left: 0.25em;
+    margin-bottom: -0.075em;
+}
+
+.cursor-spinner {
     display: inline-block;
     background-color: hsl(0, 0%, 21%);
     animation: blink 1s steps(5, start) -0.5s infinite;
     width: 0.5em;
     height: 0.9em;
     padding: 0;
+    margin-left: 0.25em;
 }
 
 .typing {
-    padding: 0;
     overflow: hidden;
     display: inline-block;
     white-space: nowrap;
-    animation: typing 1.5s steps(5, end) -0.2s;
+    animation: typing 5s steps(20, end);
     vertical-align: text-bottom;
+    max-width: min-content;
 }
 
 
