@@ -61,6 +61,13 @@
 ;; -------------------------
 ;; My stuff
 
+(defn banner []
+  [:section.hero.is-dark
+   [:div.hero-body
+    [:div.container
+     [:h1.title.is-size-1-desktop "\u03BB " [:a {:href "/"} "Hello world"] [:div.cursor]]
+     [:p.subtitle.appear "I'm Vincent Raerek"]]]])
+
 (defn the-goods []
   [:nav
    [:h3.title "The Goods"]
@@ -122,10 +129,13 @@
    [:legend "Yosemite National Park"]])
 
 (defn page []
-  [:main.container
-   [:div.columns
-    [site-nav]
-    [display]]])
+  [:<>
+   [banner]
+   [:main.container
+    [:div.columns
+     [site-nav]
+     [display]]]]
+  )
 
 (defn spinner []
   [:div.lds-ellipsis [:div] [:div] [:div] [:div]])
