@@ -36,7 +36,7 @@
        [nav-link "#/" "Home" :home]
        [nav-link "#/about" "About" :about]]]]))
 
-(defn about-page []
+(defn about-page-old []
   [:div.container
    [:div.row
     [:div.col-md-12
@@ -49,24 +49,15 @@
       [:div {:dangerouslySetInnerHTML
              {:__html (md->html docs)}}]])])
 
-(def pages
-  {:home #'home-page
-   :about #'about-page})
-
-(defn default-page []
-  [:div
-   [navbar]
-   [(pages @(rf/subscribe [:page]))]])
 
 ;; -------------------------
 ;; My stuff
 
 (defn banner []
   [:section.hero.is-dark
-   [:div.hero-body
-    [:div.container
-     [:h1.title.is-size-1-desktop "\u03BB " [:a {:href "/"} "Hello world"] [:div.cursor]]
-     [:p.subtitle.appear "I'm Vincent Raerek"]]]])
+   [:div.hero-body.container
+    [:h1.title.is-size-1-desktop [:a {:href "/"} "Hello world"] [:div.cursor]]
+    [:p.subtitle.appear "I'm Vincent Raerek"]]])
 
 (defn the-goods []
   [:nav
@@ -79,7 +70,11 @@
     [:li.subtitle
      [:a {:href "/posts"}
       "Things I've Written"
-      [:h6.subtitle.is-6 "On Technology and Ideas"]]]     
+      [:h6.subtitle.is-6 "On Technology and Ideas"]]]
+    [:li.subtitle
+     [:a {:href "/resume"}
+      "Resume"
+      [:h6.subtitle.is-6 "Things I've Built and Places I've Worked"]]]    
     ]])
 
 (defn also-on []
@@ -108,7 +103,7 @@
       "Stack Overflow" [:h6.subtitle.is-6 "If you like to ask questions"]]]]])
 
 
-(defn mytest []
+(defn color-demo []
   (let [color (r/atom "blue")]
     (fn []
       (condp = @color
@@ -118,27 +113,41 @@
                          :style {:background "red"}}]))))
 
 (defn site-nav []
-  [:header.section.column.is-one-third
+  [:header.column
    [the-goods]
-   [also-on]
-   ])
+   [:div.strike]
+   [also-on]])
 
-(defn display []
-  [:div.section.column.is-hidden-mobile
-   [:figure.bg-img]
+(defn display-og []
+  [:div.column.is-hidden-mobile
+   [:figure.me-img]
    [:legend "Yosemite National Park"]])
 
-(defn page []
+(defn display []
+  [:div.column.is-hidden-mobile
+   [:figure
+    [:img {:src "/img/profile.jpg"}]]
+   [:legend "Yosemite National Park"]])
+
+(defn about-page []
   [:<>
    [banner]
-   [:main.container
-    [:div.columns
-     [site-nav]
-     [display]]]]
-  )
+   [:main.container.section
+    [:div.columns.is-variable.is-7
+     [display]
+     [site-nav]]]])
 
-(defn spinner []
-  [:div.lds-ellipsis [:div] [:div] [:div] [:div]])
+(def pages
+  {:home #'about-page
+   :about #'about-page})
+
+(defn page []
+  [(pages @(rf/subscribe [:page]))])
+
+(defn old-page []
+  [:div
+   [navbar]
+   [(pages @(rf/subscribe [:page]))]])
 
 ;; -------------------------
 ;; Routes
