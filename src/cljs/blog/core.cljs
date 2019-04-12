@@ -72,7 +72,7 @@
       "Things I've Written"
       [:h6.subtitle.is-6 "On Technology and Ideas"]]]
     [:li.subtitle
-     [:a {:href "/resume"}
+     [:a {:href "/files/vincent-raerek-resume.pdf" :download true}
       "Resume"
       [:h6.subtitle.is-6 "Things I've Built and Places I've Worked"]]]    
     ]])
