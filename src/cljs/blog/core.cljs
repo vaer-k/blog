@@ -1,63 +1,35 @@
 (ns blog.core
-  (:require [baking-soda.core :as b]
-            [day8.re-frame.http-fx]
-            [reagent.core :as r]
-            [re-frame.core :as rf]
-            [goog.events :as events]
-            [goog.history.EventType :as HistoryEventType]
-            [markdown.core :refer [md->html]]
-            [blog.ajax :as ajax]
-            [blog.events]
-            [secretary.core :as secretary])
+  (:require
+    [day8.re-frame.http-fx]
+    [reagent.dom :as rdom]
+    [reagent.core :as r]
+    [re-frame.core :as rf]
+    [goog.events :as events]
+    [goog.history.EventType :as HistoryEventType]
+    [markdown.core :refer [md->html]]
+    [blog.ajax :as ajax]
+    [blog.events]
+    [reitit.core :as reitit]
+    [reitit.frontend.easy :as rfe]
+    [clojure.string :as string])
   (:import goog.History))
 
-; the navbar components are implemented via baking-soda [1]
-; library that provides a ClojureScript interface for Reactstrap [2]
-; Bootstrap 4 components.
-; [1] https://github.com/gadfly361/baking-soda
-; [2] http://reactstrap.github.io/
-
-(defn nav-link [uri title page]
-  [b/NavItem
-   [b/NavLink
-    {:href   uri
-     :active (when (= page @(rf/subscribe [:page])) "active")}
-    title]])
-
-(defn navbar []
-  (r/with-let [expanded? (r/atom true)]
-    [b/Navbar {:light true
-               :class-name "navbar-dark bg-primary"
-               :expand "md"}
-     [b/NavbarBrand {:href "/"} "blog"]
-     [b/NavbarToggler {:on-click #(swap! expanded? not)}]
-     [b/Collapse {:is-open @expanded? :navbar true}
-      [b/Nav {:class-name "mr-auto" :navbar true}
-       [nav-link "#/" "Home" :home]
-       [nav-link "#/about" "About" :about]]]]))
-
-(defn about-page-old []
-  [:div.container
-   [:div.row
-    [:div.col-md-12
-     [:img {:src "/img/warning_clojure.png"}]]]])
-
+;; currently unused
 (defn home-page []
-  [:div.container
+  [:section.section>div.container>div.content
    (when-let [docs @(rf/subscribe [:docs])]
-     [:div.row>div.col-sm-12
-      [:div {:dangerouslySetInnerHTML
-             {:__html (md->html docs)}}]])])
-
+     [:div "Hello world!"]
+     [:div {:dangerouslySetInnerHTML {:__html (md->html docs)}}])])
 
 ;; -------------------------
 ;; My stuff
 
 (defn banner []
   [:section.hero.is-dark
-   [:div.hero-body.container
-    [:h1.title.is-size-1-desktop [:a {:href "/"} "Hello world"] [:div.cursor]]
-    [:p.subtitle.appear "I'm Vincent Raerek"]]])
+   [:div.hero-body
+    [:div.container
+     [:h1.title.is-size-1-desktop [:a {:href "/"} "Hello world"] [:div.cursor]]
+     [:p.subtitle.appear "I'm Vincent Raerek"]]]])
 
 (defn the-goods []
   [:nav
@@ -132,54 +104,43 @@
 (defn about-page []
   [:<>
    [banner]
-   [:main.container.section
-    [:div.columns.is-variable.is-7
-     [display]
-     [site-nav]]]])
+   [:main.section
+    [:div.container
+     [:div.columns.is-variable.is-7
+      [display]
+      [site-nav]]]]])
 
-(def pages
-  {:home #'about-page
-   :about #'about-page})
-
+;;;;
+;;;;
+;;;;
 (defn page []
-  [(pages @(rf/subscribe [:page]))])
+  (if-let [page @(rf/subscribe [:common/page])]
+     [page]))
 
-(defn old-page []
-  [:div
-   [navbar]
-   [(pages @(rf/subscribe [:page]))]])
+(defn navigate! [match _]
+  (rf/dispatch [:common/navigate match]))
 
-;; -------------------------
-;; Routes
+(def router
+  (reitit/router
+    [["/" {:name        :home
+           :view        #'about-page ;; TODO move back to home page
+           :controllers [{:start (fn [_] (rf/dispatch [:page/init-home]))}]}]
+     ["/about" {:name :about
+                :view #'about-page}]]))
 
-(secretary/set-config! :prefix "#")
-
-(secretary/defroute "/" []
-  (rf/dispatch [:navigate :home]))
-
-(secretary/defroute "/about" []
-  (rf/dispatch [:navigate :about]))
-
-;; -------------------------
-;; History
-;; must be called after routes have been defined
-(defn hook-browser-navigation! []
-  (doto (History.)
-    (events/listen
-      HistoryEventType/NAVIGATE
-      (fn [event]
-        (secretary/dispatch! (.-token event))))
-    (.setEnabled true)))
+(defn start-router! []
+  (rfe/start!
+    router
+    navigate!
+    {}))
 
 ;; -------------------------
 ;; Initialize app
-(defn mount-components []
+(defn ^:dev/after-load mount-components []
   (rf/clear-subscription-cache!)
-  (r/render [#'page] (.getElementById js/document "app")))
+  (rdom/render [#'page] (.getElementById js/document "app")))
 
 (defn init! []
-  (rf/dispatch-sync [:navigate :home])
+  (start-router!)
   (ajax/load-interceptors!)
-  (rf/dispatch [:fetch-docs])
-  (hook-browser-navigation!)
   (mount-components))

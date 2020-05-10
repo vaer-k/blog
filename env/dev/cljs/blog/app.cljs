@@ -1,8 +1,14 @@
-(ns ^:figwheel-no-load blog.app
-  (:require [blog.core :as core]
-            [cljs.spec.alpha :as s]
-            [expound.alpha :as expound]
-            [devtools.core :as devtools]))
+(ns ^:dev/once blog.app
+  (:require
+    [blog.core :as core]
+    [cljs.spec.alpha :as s]
+    [expound.alpha :as expound]
+    [devtools.core :as devtools]))
+
+(extend-protocol IPrintWithWriter
+  js/Symbol
+  (-pr-writer [sym writer _]
+    (-write writer (str "\"" (.toString sym) "\""))))
 
 (set! s/*explain-out* expound/printer)
 
