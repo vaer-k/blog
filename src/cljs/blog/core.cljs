@@ -66,7 +66,7 @@
           :target "tab"}
       "LinkedIn" [:h6.subtitle.is-6 "If you wanna work together"]]]
     [:li.subtitle
-     [:a {:href "https://instagram.com/vaer_k"
+     [:a {:href "https://instagram.com/v.aer.k"
           :target "tab"}
       "Instagram" [:h6.subtitle.is-6 "If you like photos"]]]
     [:li.subtitle
