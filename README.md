@@ -1,26 +1,19 @@
-# blog
+# Blog
 
-generated using Luminus version "3.70"
+To start your Phoenix server:
 
-FIXME
+  * Install dependencies with `mix deps.get`
+  * Create and migrate your database with `mix ecto.setup`
+  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 
-## Prerequisites
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-You will need [Leiningen][1] 2.0 or above installed.
+Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
-[1]: https://github.com/technomancy/leiningen
+## Learn more
 
-## Running
-
-To start a web server for the application, run:
-
-    lein run 
-    
-For development with cider cljs repl, run:
-
-`lein shadow watch app` and in another tab `lein run`. Then run `cider-connect-clj` in emacs; specify `localhost` and port `7002` at cider prompts;
-then run `(shadow/repl :app)` from repl
-
-## License
-
-Copyright © 2020 FIXME
+  * Official website: https://www.phoenixframework.org/
+  * Guides: https://hexdocs.pm/phoenix/overview.html
+  * Docs: https://hexdocs.pm/phoenix
+  * Forum: https://elixirforum.com/c/phoenix-forum
+  * Source: https://github.com/phoenixframework/phoenix
