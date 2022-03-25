@@ -7,7 +7,7 @@ kill_timeout = 5
 processes = []
 
 [deploy]
-  release_command = "/app/bin/migrate"
+  release_command = "/app/bin/blog eval Blog.Release.migrate"
 
 [env]
   PHX_HOST = "withered-firefly-3939.fly.dev"

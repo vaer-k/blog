@@ -10,7 +10,7 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :blog, BlogWeb.Endpoint,
-  url: [host: "monadnomad.dev", port: 80],
+  url: [host: "withered-firefly-3939.fly.dev", port: 8080],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
