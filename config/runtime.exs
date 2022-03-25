@@ -7,12 +7,7 @@ import Config
 # any compile-time configuration in here, as it won't be applied.
 # The block below contains prod specific runtime configuration.
 if config_env() == :prod do
-  database_path =
-    System.get_env("DATABASE_PATH") ||
-      raise """
-      environment variable DATABASE_PATH is missing.
-      For example: /etc/blog/blog.db
-      """
+  database_path = System.get_env("DATABASE_PATH") || "/etc/blog/blog.db"
 
   config :blog, Blog.Repo,
     database: database_path,
