@@ -1,41 +1,31 @@
-<section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>Peace of mind from prototype to production</p>
-</section>
+<div class="flex flex-row justify-between max-w-5xl py-16 px-4 sm:py-16 sm:px-6 lg:px-8">
+  <div>
+    <%=content_tag(:img, 
+    "Yosemite National Park", 
+    class: "max-w-lg",
+    src: Routes.static_path(@conn, "/images/profile.jpg")) %>
+  </div>
+  <div class="text-slate-700">
+    <h2 class="text-3xl">You're probably here for</h2>
+    <ul class="mt-5">
+      <%= link "My resume", to: Routes.static_path(@conn, "/files/vincent-raerek-resume.pdf"), class: "text-xl text-blue-500" %>
+      <p class="text-slate-500">Things I've Built and Places I've Worked</p>
+    </ul>
 
-<section class="row">
-  <article class="column">
-    <h2>Resources</h2>
-    <ul>
-      <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.6/CHANGELOG.md">v1.6 Changelog</a>
-      </li>
+    <div class="my-5 h-[1px] w-full bg-gradient-to-r from-black to-white"></div>
+
+    <h2 class="text-3xl">But I'm also on</h2>
+    <ul class="flex flex-col text-blue-500 mt-5">
+      <%= link "GitHub", to: "https://github.com/vaer-k", class: "text-xl" %>
+      <p class="text-slate-500">If you code</p>
+      <%= link "Twitter", to: "https://twitter.com/vaer_k", class: "text-xl mt-5" %>
+      <p class="text-slate-500">If you tweet</p>
+      <%= link "LinkedIn", to: "https://www.linkedin.com/in/vincentraerek", class: "text-xl mt-5" %>
+      <p class="text-slate-500">If you wanna work together</p>
+      <%= link "Instagram", to: "https://instagram.com/v.aer.k", class: "text-xl mt-5" %>
+      <p class="text-slate-500">If you like photos</p>
+      <%= link "StackOverflow", to: "https://stackoverflow.com/users/2602816/vaer-k", class: "text-xl mt-5" %>
+      <p class="text-slate-500">If you like to ask questions</p>
     </ul>
-  </article>
-  <article class="column">
-    <h2>Help</h2>
-    <ul>
-      <li>
-        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
-      </li>
-      <li>
-        <a href="https://web.libera.chat/#elixir">#elixir on Libera Chat (IRC)</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
-      </li>
-      <li>
-        <a href="https://elixir-slackin.herokuapp.com/">Elixir on Slack</a>
-      </li>
-      <li>
-        <a href="https://discord.gg/elixir">Elixir on Discord</a>
-      </li>
-    </ul>
-  </article>
-</section>
+  </div>
+</div>
