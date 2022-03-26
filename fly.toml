@@ -1,16 +1,16 @@
-# fly.toml file generated for withered-firefly-3939 on 2022-03-25T14:32:06-07:00
+# fly.toml file generated for withered-forest-1852 on 2022-03-25T17:28:19-07:00
 
-app = "withered-firefly-3939"
+app = "withered-forest-1852"
 
 kill_signal = "SIGTERM"
 kill_timeout = 5
 processes = []
 
 [deploy]
-  release_command = "/app/bin/blog eval Blog.Release.migrate"
+  release_command = "/app/bin/migrate"
 
 [env]
-  PHX_HOST = "withered-firefly-3939.fly.dev"
+  PHX_HOST = "withered-forest-1852.fly.dev"
   PORT = "8080"
 
 [experimental]
