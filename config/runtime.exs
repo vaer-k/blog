@@ -18,7 +18,7 @@ if config_env() == :prod do
   # to check this value into version control, so we use an environment
   # variable instead.
 
-  maybe_ipv6 = if System.get_env("ECTO_IPV6"), do: [:inet6], else: []
+  # maybe_ipv6 = if System.get_env("ECTO_IPV6"), do: [:inet6], else: []
 
   # config :hello_elixir, HelloElixir.Repo,
   #   # ssl: true,
