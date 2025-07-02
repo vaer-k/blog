@@ -7,6 +7,7 @@
 # General application configuration
 import Config
 
+
 # Configures the endpoint
 config :blog, BlogWeb.Endpoint,
   url: [host: "localhost"],
