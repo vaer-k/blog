@@ -15,7 +15,8 @@
       "Bash(mix compile:*)",
       "Bash(mix format)",
       "Bash(mix test)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(gh pr create:*)"
     ],
     "deny": []
   }
