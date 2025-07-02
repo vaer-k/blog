@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:fly.io)",
+      "WebFetch(domain:community.fly.io)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(fly deploy:*)",
+      "Bash(fly status:*)"
+    ],
+    "deny": []
+  }
+}
