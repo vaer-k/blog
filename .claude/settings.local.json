@@ -16,7 +16,11 @@
       "Bash(mix format)",
       "Bash(mix test)",
       "Bash(git checkout:*)",
-      "Bash(gh pr create:*)"
+      "Bash(gh pr create:*)",
+      "Bash(git branch:*)",
+      "Bash(gh repo set-default-branch:*)",
+      "Bash(gh repo edit:*)",
+      "mcp__flyctl__fly-status"
     ],
     "deny": []
   }
