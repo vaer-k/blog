@@ -3,12 +3,12 @@
     <%=content_tag(:img, 
     "Yosemite National Park", 
     class: "sm:max-w-lg",
-    src: Routes.static_path(@conn, "/images/profile.jpg")) %>
+    src: ~p"/images/profile.jpg") %>
   </div>
   <div class="text-slate-700 min-w-min">
     <h2 class="text-3xl">You're probably here for</h2>
     <ul class="mt-5">
-      <%= link "My resume", to: Routes.static_path(@conn, "/files/vincent-raerek-resume.pdf"), class: "text-xl text-blue-500" %>
+      <.link href={~p"/files/vincent-raerek-resume.pdf"} class="text-xl text-blue-500">My resume</.link>
       <p class="text-slate-500">Things I've Built and Places I've Worked</p>
     </ul>
 
@@ -16,11 +16,11 @@
 
     <h2 class="text-3xl">But I'm also on</h2>
     <ul class="flex flex-col text-blue-500 mt-5">
-      <%= link "GitHub", to: "https://github.com/vaer-k", class: "text-xl" %>
+      <.link href="https://github.com/vaer-k" class="text-xl">GitHub</.link>
       <p class="text-slate-500">If you code</p>
-      <%= link "LinkedIn", to: "https://www.linkedin.com/in/vincentraerek", class: "text-xl mt-5" %>
+      <.link href="https://www.linkedin.com/in/vincentraerek" class="text-xl mt-5">LinkedIn</.link>
       <p class="text-slate-500">If you wanna work together</p>
-      <%= link "StackOverflow", to: "https://stackoverflow.com/users/2602816/vaer-k", class: "text-xl mt-5" %>
+      <.link href="https://stackoverflow.com/users/2602816/vaer-k" class="text-xl mt-5">StackOverflow</.link>
       <p class="text-slate-500">If you like to ask questions</p>
     </ul>
   </div>

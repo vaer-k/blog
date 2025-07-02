@@ -2,8 +2,11 @@ import Config
 
 # Configure your database
 config :blog, Blog.Repo,
-  database: Path.expand("../blog_dev.db", Path.dirname(__ENV__.file)),
-  pool_size: 5,
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost",
+  database: "blog_dev",
+  pool_size: 10,
   show_sensitive_data_on_connection_error: true
 
 # For development, we disable any cache and enable

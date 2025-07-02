@@ -24,16 +24,14 @@ defmodule BlogWeb.ConnCase do
       import Phoenix.ConnTest
       import BlogWeb.ConnCase
 
-      alias BlogWeb.Router.Helpers, as: Routes
+      import BlogWeb.VerifiedRoutes
 
       # The default endpoint for testing
       @endpoint BlogWeb.Endpoint
     end
   end
 
-  setup tags do
-    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Blog.Repo, shared: not tags[:async])
-    on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
+  setup _tags do
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end
