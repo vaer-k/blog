@@ -20,7 +20,8 @@
       "Bash(git branch:*)",
       "Bash(gh repo set-default-branch:*)",
       "Bash(gh repo edit:*)",
-      "mcp__flyctl__fly-status"
+      "mcp__flyctl__fly-status",
+      "Bash(mix format:*)"
     ],
     "deny": []
   }
