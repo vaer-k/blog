@@ -91,3 +91,24 @@
   cursor: pointer;
 }
 
+/* CLI prompt styling */
+#cli-prompt {
+  outline: none;
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 0.05em;
+  cursor: text;
+  caret-color: transparent; /* Hide the browser's caret */
+}
+
+#cli-prompt:focus {
+  outline: none;
+  caret-color: transparent; /* Ensure caret stays hidden when focused */
+}
+
+/* Terminal-style cursor */
+#cli-cursor {
+  margin-left: 2px;
+  vertical-align: baseline;
+  display: inline-block;
+}
+
