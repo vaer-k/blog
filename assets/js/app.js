@@ -41,3 +41,56 @@ liveSocket.connect()
 // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
+
+// CLI-like editable header functionality
+document.addEventListener("DOMContentLoaded", () => {
+  const cliPrompt = document.getElementById("cli-prompt");
+  const cliCursor = document.getElementById("cli-cursor");
+  const header = document.querySelector("header");
+  
+  if (cliPrompt && cliCursor) {
+    // Focus on page load
+    cliPrompt.focus();
+    // Move cursor to end of text
+    const range = document.createRange();
+    const sel = window.getSelection();
+    range.selectNodeContents(cliPrompt);
+    range.collapse(false);
+    sel.removeAllRanges();
+    sel.addRange(range);
+    
+    // Focus the text editor when clicking anywhere in the header
+    if (header) {
+      header.addEventListener("click", (e) => {
+        // Don't focus if clicking on links or other interactive elements
+        if (e.target.closest("a") && e.target !== cliPrompt) return;
+        cliPrompt.focus();
+        // Move cursor to end of text
+        const range = document.createRange();
+        const sel = window.getSelection();
+        range.selectNodeContents(cliPrompt);
+        range.collapse(false);
+        sel.removeAllRanges();
+        sel.addRange(range);
+      });
+    }
+    
+    // Keep our custom cursor visible at all times
+    // The browser's caret is hidden via CSS
+    
+    // Prevent line breaks
+    cliPrompt.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        cliPrompt.blur();
+      }
+    });
+    
+    // Keep text plain when pasting
+    cliPrompt.addEventListener("paste", (e) => {
+      e.preventDefault();
+      const text = (e.clipboardData || window.clipboardData).getData("text");
+      document.execCommand("insertText", false, text);
+    });
+  }
+});
